@@ -1,0 +1,27 @@
+{
+  "name": "jasperfw/core",
+  "description": "Common classes used in multiple places in the Jasper Framework and related libraries.",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "William Eldridge",
+      "homepage": "http://wigedev.net"
+    }
+  ],
+  "require": {
+    "php": ">=7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "JasperFW\\Core\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JasperFW\\CoreTests\\": "tests/"
+    }
+  }
+}
