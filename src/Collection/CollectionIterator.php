@@ -1,15 +1,15 @@
 <?php
-namespace JasperFW\Core;
+namespace JasperFW\Core\Collection;
 
 use Iterator;
-use JasperFW\DataInterface\Exception\CollectionException;
+use JasperFW\Core\Exception\CollectionException;
 
 /**
  * Class CollectionIterator
  *
  * Utility class to allow a collection to be iterated through in a foreach.
  *
- * @package JasperFW\Core
+ * @package JasperFW\Core\Collection
  */
 class CollectionIterator implements Iterator
 {

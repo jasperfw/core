@@ -1,5 +1,5 @@
 <?php
-namespace JasperFW\Core;
+namespace JasperFW\Core\Collection;
 
 /**
  * Interface CollectibleInterface
@@ -7,7 +7,7 @@ namespace JasperFW\Core;
  * The collectible interface is intended for models that have a collection of members as a static property. This class
  * provides some functionality for looking up members of the collection.
  *
- * @package JasperFW\Core
+ * @package JasperFW\Core\Collection
  */
 interface CollectibleInterface
 {

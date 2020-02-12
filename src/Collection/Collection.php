@@ -1,15 +1,15 @@
 <?php
-namespace JasperFW\Core;
+namespace JasperFW\Core\Collection;
 
 use IteratorAggregate;
-use JasperFW\DataInterface\Exception\CollectionException;
+use JasperFW\Core\Exception\CollectionException;
 
 /**
  * Class Collection
  *
  * Collection handler. Models can extend this to allow iterating through members.
  *
- * @package JasperFW\Core
+ * @package JasperFW\Core\Collection
  */
 class Collection implements IteratorAggregate
 {
@@ -28,8 +28,8 @@ class Collection implements IteratorAggregate
     /**
      * Adds a new member to the collection
      *
-     * @param mixed $object
-     * @param null|string|int $key
+     * @param mixed $object The object being added
+     * @param null|string|int $key The key for the object being added
      *
      * @throws CollectionException
      */
@@ -65,7 +65,7 @@ class Collection implements IteratorAggregate
             return;
         }
         $position = array_search($previous_key, array_keys($this->members));
-        $this->array_insert($object, $key, $position + 1);
+        $this->arrayInsert($object, $key, $position + 1);
     }
 
     /**
@@ -81,11 +81,11 @@ class Collection implements IteratorAggregate
     {
         // If the latter key doesn't exist, just add the item to the end.
         if (!isset($this->members[$latter_key])) {
-            $this->addItem($object, $key);
+            $this->arrayInsert($object, $key, 0);
             return;
         }
         $position = array_search($latter_key, array_keys($this->members));
-        $this->array_insert($object, $key, $position);
+        $this->arrayInsert($object, $key, $position);
     }
 
     /**
@@ -95,7 +95,7 @@ class Collection implements IteratorAggregate
      * @param string $key The key of the new object
      * @param int $position The position at which to add the object
      */
-    private function array_insert($object, string $key, int $position) : void
+    private function arrayInsert($object, string $key, int $position) : void
     {
         if (0 == count($this->members)) {
             // The array is empty so just add the item
@@ -121,8 +121,6 @@ class Collection implements IteratorAggregate
         $this->checkCallback();
         if (isset($this->members[$key])) {
             unset($this->members[$key]);
-        } else {
-            throw new CollectionException('Unable to remove from collection - key ' . $key . ' not found.');
         }
     }
 
