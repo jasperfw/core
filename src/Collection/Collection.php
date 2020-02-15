@@ -15,7 +15,7 @@ class Collection implements IteratorAggregate
 {
     protected $members = array();
     protected $onload;
-    protected $is_loaded = false;
+    protected $isLoaded = false;
 
     /**
      * Set up the collection
@@ -194,14 +194,14 @@ class Collection implements IteratorAggregate
      * TODO: Figure out how to declare the arguments
      *
      * @param string $function_name
-     * @param null $obj_or_class
+     * @param null   $objOrClass
      *
      * @throws CollectionException
      */
-    public function setLoadCallback($function_name, $obj_or_class = null) : void
+    public function setLoadCallback($function_name, $objOrClass = null): void
     {
-        if ($obj_or_class) {
-            $callback = array($obj_or_class, $function_name);
+        if ($objOrClass) {
+            $callback = [$objOrClass, $function_name];
         } else {
             $callback = $function_name;
         }
@@ -217,8 +217,8 @@ class Collection implements IteratorAggregate
      */
     private function checkCallback() : void
     {
-        if (isset($this->onload) && !$this->is_loaded) {
-            $this->is_loaded = true;
+        if (isset($this->onload) && !$this->isLoaded) {
+            $this->isLoaded = true;
             call_user_func($this->onload, $this);
         }
     }

@@ -13,8 +13,11 @@ use JasperFW\Core\Exception\CollectionException;
  */
 class CollectionIterator implements Iterator
 {
+    /** @var Collection The collection being iterated over */
     private $collection;
+    /** @var int The pointer indicating the current element */
     private $pointer = 0;
+    /** @var array The keys of the collection */
     private $keys;
 
     /**
@@ -40,7 +43,7 @@ class CollectionIterator implements Iterator
      */
     public function hasMore() : bool
     {
-        return $this->pointer < $this->collection->length();
+        return $this->pointer < $this->collection->length() - 1;
     }
 
     /**

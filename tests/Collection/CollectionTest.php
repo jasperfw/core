@@ -95,4 +95,31 @@ class CollectionTest extends TestCase
         $sut = new Collection();
         $this->assertInstanceOf(CollectionIterator::class, $sut->getIterator());
     }
+
+    /**
+     * @throws CollectionException
+     */
+    public function testIsset()
+    {
+        $sut = new Collection();
+        $sut->addItem('c', 'd');
+        $this->assertTrue($sut->__isset('d'));
+        $this->assertFalse($sut->__isset('nope'));
+    }
+
+    /**
+     * @throws CollectionException
+     */
+    public function testSetLoadCallback()
+    {
+        $sut = new Collection();
+        $sut->setLoadCallback('aCallback', $this);
+        $sut->addItem('c', 'd');
+        $this->assertTrue(true);
+    }
+
+    public function aCallback()
+    {
+        return true;
+    }
 }

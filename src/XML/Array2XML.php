@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpComposerExtensionStubsInspection */
+
 namespace JasperFW\Core\XML;
 
 use DOMDocument;
