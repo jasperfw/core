@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 class CollectionIteratorTest extends TestCase
 {
     /** @var Collection */
-    protected $collection;
+    protected Collection $collection;
 
     /**
      * @throws CollectionException

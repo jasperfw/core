@@ -13,7 +13,7 @@ use InvalidArgumentException;
 abstract class ValueMap
 {
     /** @var array */
-    protected $map = array();
+    protected array $map = array();
 
     /**
      * Retrieve a value
@@ -33,9 +33,10 @@ abstract class ValueMap
      * Checks if the type exists in the map.
      *
      * @param string $index
+     *
      * @return bool
      */
-    public function isValid($index) : bool
+    public function isValid(string $index): bool
     {
         return isset($this->map[$index]);
     }

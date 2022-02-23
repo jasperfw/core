@@ -13,9 +13,9 @@ use JasperFW\Core\Exception\CollectionException;
  */
 class Collection implements IteratorAggregate
 {
-    protected $members = array();
-    protected $onload;
-    protected $isLoaded = false;
+    protected array $members = [];
+    protected string|array $onload;
+    protected bool $isLoaded = false;
 
     /**
      * Set up the collection
@@ -33,7 +33,7 @@ class Collection implements IteratorAggregate
      *
      * @throws CollectionException
      */
-    public function addItem($object, ?string $key = null) : void
+    public function addItem(mixed $object, string|int $key = null): void
     {
         $this->checkCallback();
 
@@ -57,7 +57,7 @@ class Collection implements IteratorAggregate
      *
      * @throws CollectionException
      */
-    public function addItemAfter($object, string $previous_key, ?string $key = null) : void
+    public function addItemAfter(mixed $object, string $previous_key, ?string $key = null): void
     {
         // If the previous key doesn't exist, just add the item to the end.
         if (!isset($this->members[$previous_key])) {
@@ -77,7 +77,7 @@ class Collection implements IteratorAggregate
      *
      * @throws CollectionException
      */
-    public function addItemBefore($object, string $latter_key, ?string $key = null) : void
+    public function addItemBefore(mixed $object, string $latter_key, ?string $key = null): void
     {
         // If the latter key doesn't exist, just add the item to the end.
         if (!isset($this->members[$latter_key])) {
@@ -95,7 +95,7 @@ class Collection implements IteratorAggregate
      * @param string $key The key of the new object
      * @param int $position The position at which to add the object
      */
-    private function arrayInsert($object, string $key, int $position) : void
+    private function arrayInsert(mixed $object, string $key, int $position): void
     {
         if (0 == count($this->members)) {
             // The array is empty so just add the item
@@ -127,12 +127,12 @@ class Collection implements IteratorAggregate
     /**
      * Returns the item represented by the key
      *
-     * @param $key
+     * @param string $key
      *
      * @return mixed
      * @throws CollectionException
      */
-    public function getItem(string $key)
+    public function getItem(string $key): mixed
     {
         $this->checkCallback();
         if (isset($this->members[$key])) {
@@ -198,7 +198,7 @@ class Collection implements IteratorAggregate
      *
      * @throws CollectionException
      */
-    public function setLoadCallback($function_name, $objOrClass = null): void
+    public function setLoadCallback(string $function_name, $objOrClass = null): void
     {
         if ($objOrClass) {
             $callback = [$objOrClass, $function_name];

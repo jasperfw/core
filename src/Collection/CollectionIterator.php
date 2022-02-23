@@ -3,6 +3,7 @@ namespace JasperFW\Core\Collection;
 
 use Iterator;
 use JasperFW\Core\Exception\CollectionException;
+use ReturnTypeWillChange;
 
 /**
  * Class CollectionIterator
@@ -14,11 +15,11 @@ use JasperFW\Core\Exception\CollectionException;
 class CollectionIterator implements Iterator
 {
     /** @var Collection The collection being iterated over */
-    private $collection;
+    private Collection $collection;
     /** @var int The pointer indicating the current element */
-    private $pointer = 0;
+    private int $pointer = 0;
     /** @var array The keys of the collection */
-    private $keys;
+    private array $keys;
 
     /**
      * Initialize the iterator
@@ -62,7 +63,7 @@ class CollectionIterator implements Iterator
      * @return mixed
      * @throws CollectionException
      */
-    public function current()
+    #[ReturnTypeWillChange] public function current(): mixed
     {
         return $this->collection->getItem($this->keys[$this->pointer]);
     }

@@ -16,7 +16,7 @@ interface CollectibleInterface
      *
      * @return mixed
      */
-    public static function lookup(int $id);
+    public static function lookup(int $id): mixed;
 
     /**
      * Access the collection

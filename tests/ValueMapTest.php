@@ -1,5 +1,5 @@
 <?php
-namespace JasperFW\DataInterfaceTest\Utility;
+namespace JasperFW\CoreTest;
 
 use InvalidArgumentException;
 use JasperFW\Core\ValueMap;

@@ -118,7 +118,7 @@ class CollectionTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function aCallback()
+    public function aCallback(): bool
     {
         return true;
     }

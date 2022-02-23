@@ -11,18 +11,18 @@ namespace JasperFW\Core\Callback;
  */
 class CallbackDefinition
 {
-    protected $object_or_class;
+    protected mixed $object_or_class;
     protected $method;
-    protected $arguments;
+    protected array $arguments;
 
     /**
      * CallbackDefinition constructor.
      *
-     * @param mixed $object_or_class The class or object that contains the method
-     * @param callable $method The method to be called
-     * @param array $arguments An array of arguments to be passed to the method when it is called
+     * @param mixed    $object_or_class The class or object that contains the method
+     * @param callable $method          The method to be called
+     * @param array    $arguments       An array of arguments to be passed to the method when it is called
      */
-    public function __construct($object_or_class, $method, $arguments = [])
+    public function __construct(mixed $object_or_class, callable $method, array $arguments = [])
     {
         $this->object_or_class = $object_or_class;
         $this->method = $method;
@@ -34,7 +34,7 @@ class CallbackDefinition
      *
      * @return mixed The value returned by the callback
      */
-    public function execute()
+    public function execute(): mixed
     {
         return call_user_func_array(array($this->object_or_class, $this->method), $this->arguments);
     }

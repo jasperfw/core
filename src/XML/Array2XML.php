@@ -25,10 +25,10 @@ use Exception;
 class Array2XML
 {
     /** @var string */
-    private static $encoding = 'UTF-8';
+    private static string $encoding = 'UTF-8';
 
     /** @var DomDocument|null */
-    private static $xml = null;
+    private static ?DOMDocument $xml = null;
 
     /**
      * Convert an Array to XML.
@@ -40,7 +40,7 @@ class Array2XML
      * @return DomDocument
      * @throws Exception
      */
-    public static function createXML($node_name, $arr = [], $docType = [])
+    public static function createXML(string $node_name, array $arr = [], array $docType = []): ?DOMDocument
     {
         $xml = self::getXMLRoot();
 
@@ -70,7 +70,7 @@ class Array2XML
      * @param bool   $standalone
      * @param bool   $format_output
      */
-    public static function init($version = '1.0', $encoding = 'utf-8', $standalone = false, $format_output = true)
+    public static function init(string $version = '1.0', string $encoding = 'utf-8', bool $standalone = false, bool $format_output = true)
     {
         self::$xml = new DomDocument($version, $encoding);
         self::$xml->xmlStandalone = $standalone;
@@ -85,7 +85,7 @@ class Array2XML
      *
      * @return string
      */
-    private static function bool2str($v)
+    private static function bool2str(mixed $v): string
     {
         //convert boolean to text value.
         $v = $v === true ? 'true' : $v;
@@ -104,7 +104,7 @@ class Array2XML
      *
      * @throws Exception
      */
-    private static function convert($node_name, $arr = [])
+    private static function convert(string $node_name, array $arr = []): DOMNode
     {
         //print_arr($node_name);
         $xml = self::getXMLRoot();
@@ -181,7 +181,7 @@ class Array2XML
      *
      * @return DomDocument|null
      */
-    private static function getXMLRoot()
+    private static function getXMLRoot(): ?DOMDocument
     {
         if (empty(self::$xml)) {
             self::init();
@@ -198,7 +198,7 @@ class Array2XML
      *
      * @return bool
      */
-    private static function isValidTagName($tag)
+    private static function isValidTagName(string $tag): bool
     {
         $pattern = '/^[a-z_]+[a-z0-9\:\-\.\_]*[^:]*$/i';
 
